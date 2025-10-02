@@ -1,0 +1,19 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  byr-jsdelivr:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - REGISTRY=https://registry.npmjs.org
+      - PORT=3000
+      - RUST_LOG=byr_jsdelivr=info
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

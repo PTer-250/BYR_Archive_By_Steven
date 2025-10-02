@@ -1,0 +1,46 @@
+[package]
+name = "byr-jsdelivr"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Web 框架
+axum = "0.7"
+tokio = { version = "1", features = ["full"] }
+tower = "0.4"
+tower-http = { version = "0.5", features = ["fs", "trace"] }
+
+# HTTP 客户端
+reqwest = { version = "0.11", features = ["json", "gzip"] }
+
+# 序列化
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# 压缩与解压
+flate2 = "1.0"
+tar = "0.4"
+
+# 版本处理
+node-semver = "2.1"
+
+# 缓存
+moka = { version = "0.12", features = ["future"] }
+
+# 错误处理
+anyhow = "1.0"
+thiserror = "1.0"
+
+# 日志
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# 其他工具
+mime_guess = "2.0"
+percent-encoding = "2.3"
+once_cell = "1.19"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
